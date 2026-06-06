@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sansho Chemical Products Co., Ltd. | Specialty Chemical Trading Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=EB+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f35;
+    --navy-mid: #162e4d;
+    --navy-light: #1e3d63;
+    --gold: #b89a5a;
+    --gold-light: #d4b87a;
+    --cream: #f5f0e8;
+    --cream-dark: #ede6d8;
+    --white: #ffffff;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #7a7a7a;
+    --border: rgba(184,154,90,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(13,31,53,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4rem;
+    height: 72px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .nav-logo span {
+    display: inline-block;
+    width: 2px; height: 28px;
+    background: var(--gold);
+  }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-right {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .lang-switch {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(184,154,90,0.5);
+    color: var(--gold-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    transition: all 0.25s;
+    flex-shrink: 0;
+  
+  }
+  .lang-switch:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+    z-index: 1100;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 1.5px;
+    background: var(--gold);
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 40% 50%, rgba(30,61,99,0.7) 0%, transparent 70%),
+      linear-gradient(135deg, #0d1f35 0%, #162e4d 50%, #0a1828 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(184,154,90,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,154,90,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 8rem;
+    max-width: 900px;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    opacity: 0.9;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+    margin-right: 1rem;
+    vertical-align: middle;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.6rem, 4.5vw, 4rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    margin-bottom: 2rem;
+  }
+  .hero-title strong {
+    font-weight: 500;
+    color: var(--gold-light);
+    display: block;
+  }
+  .hero-subtitle {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.58);
+    line-height: 1.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 3rem;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 1rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .hero-cta:hover { background: var(--gold); color: var(--navy); }
+  .hero-cta::after { content: '→'; }
+
+  /* Float text */
+  .hero-float-text {
+    position: absolute;
+    right: 5rem; top: 50%;
+    transform: translateY(-60%);
+    z-index: 1;
+    display: flex; flex-direction: column;
+    align-items: flex-end; gap: 0.6rem;
+    pointer-events: none;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+  .hero-float-text span {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    color: rgba(184,154,90,0.17);
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    white-space: nowrap;
+    display: block;
+  }
+  .hero-float-text .ft-since { font-size: clamp(2rem, 2.8vw, 3.2rem); }
+  .hero-float-text .ft-trusted { font-size: clamp(1rem, 1.4vw, 1.6rem); letter-spacing: 0.08em; }
+
+  /* Badges */
+  .hero-badges {
+    position: absolute; right: 5rem; bottom: 8rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    z-index: 2;
+    animation: fadeUp 1.4s ease 0.4s both;
+  }
+  .hero-badge {
+    border: 1px solid rgba(184,154,90,0.28);
+    padding: 0.65rem 1.4rem;
+    background: rgba(13,31,53,0.45);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0; opacity: 0.7;
+  }
+  .hero-badge span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.15em;
+    font-weight: 300;
+    white-space: nowrap;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 3rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.6rem; letter-spacing: 0.25em;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block; width: 1px; height: 48px;
+    background: linear-gradient(to bottom, rgba(184,154,90,0.5), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 7rem 0; }
+  .section-inner { max-width: 1120px; margin: 0 auto; padding: 0 4rem; }
+  .section-header { margin-bottom: 4rem; }
+  .section-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--gold);
+    margin-right: 0.8rem;
+    vertical-align: middle;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 400;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+  }
+  .section-lead {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.95;
+    letter-spacing: 0.01em;
+    max-width: 640px;
+    margin-top: 1.5rem;
+    font-weight: 300;
+  }
+  .divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-top: 1.5rem;
+  }
+
+  /* ─── BUSINESS ─── */
+  #business { background: var(--cream); }
+  .business-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 3rem;
+    background: var(--border);
+  }
+  .biz-card {
+    background: var(--cream);
+    padding: 2.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .biz-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .biz-card:hover::before { opacity: 1; }
+  .biz-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    color: rgba(184,154,90,0.12);
+    font-size: 1.4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+  }
+  .biz-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+  .biz-card .biz-lead {
+    font-size: 0.86rem;
+    color: var(--navy);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.6rem;
+  }
+  .biz-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* ─── PRODUCTS ─── */
+  #products { background: var(--navy); }
+  #products .section-title { color: var(--white); }
+  #products .section-lead { color: rgba(255,255,255,0.55); }
+  .products-tabs {
+    display: flex; gap: 0; margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(184,154,90,0.2);
+  }
+  .tab-btn {
+    background: none; border: none;
+    padding: 1.1rem 2.4rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.45);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    transition: color 0.2s;
+    min-height: 48px;
+    text-transform: uppercase;
+  }
+  .tab-btn.active { color: var(--gold-light); }
+  .tab-btn.active::after {
+    content: '';
+    position: absolute; bottom: -1px; left: 0; right: 0;
+    height: 2px; background: var(--gold);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .product-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,154,90,0.12);
+    padding: 2rem 2.4rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .product-card:hover {
+    border-color: rgba(184,154,90,0.35);
+    background: rgba(255,255,255,0.06);
+  }
+  .product-cat {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .product-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.8rem;
+  }
+  .product-card ul { list-style: none; padding: 0; }
+  .product-card ul li {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    padding-left: 1rem;
+    position: relative;
+    font-weight: 300;
+  }
+  .product-card ul li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--gold); opacity: 0.5;
+    font-size: 0.7rem;
+  }
+
+  /* ─── STRENGTHS ─── */
+  #strengths { background: var(--cream-dark); }
+  .strengths-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .strength-item {
+    padding: 2.4rem;
+    background: var(--cream);
+    border-top: 2px solid var(--gold);
+    position: relative;
+  }
+  .strength-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.2;
+    line-height: 1;
+    position: absolute;
+    top: 1.2rem; right: 1.5rem;
+    font-weight: 300;
+  }
+  .strength-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+  .strength-item.featured h3 { font-weight: 600; }
+  .strength-item.featured .strength-num { opacity: 0.28; }
+  .strength-item p {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* ─── FLOW ─── */
+  #flow { background: var(--white); }
+  .flow-steps {
+    display: flex; align-items: flex-start;
+    gap: 0; margin-top: 3rem;
+    position: relative;
+  }
+  .flow-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 28px; right: 28px;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), rgba(184,154,90,0.2));
+  }
+  .flow-step {
+    flex: 1; text-align: center;
+    position: relative;
+  }
+  .flow-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .flow-circle span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+  .flow-step h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+  .flow-step p {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 120px; margin: 0 auto;
+  }
+
+  /* ─── GREETING ─── */
+  #greeting { background: var(--navy-mid); }
+  #greeting .section-title { color: var(--white); }
+  .greeting-inner {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .greeting-meta {
+    border-top: 1px solid rgba(184,154,90,0.3);
+    padding-top: 2rem;
+  }
+  .greeting-meta .role {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .greeting-meta .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    letter-spacing: 0.06em;
+    font-weight: 400;
+  }
+  .greeting-meta .company {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .greeting-text {
+    border-left: 1px solid rgba(184,154,90,0.2);
+    padding-left: 3rem;
+  }
+  .greeting-text p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 2;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ─── COMPANY ─── */
+  #company { background: var(--cream); }
+  .company-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3rem;
+    font-size: 0.86rem;
+  }
+  .company-table tr { border-bottom: 1px solid var(--cream-dark); }
+  .company-table tr:first-child { border-top: 2px solid var(--gold); }
+  .company-table th {
+    text-align: left;
+    padding: 1.4rem 2rem 1.4rem 1rem;
+    color: var(--navy);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 220px;
+    letter-spacing: 0.04em;
+    vertical-align: top;
+    border-left: 2px solid rgba(184,154,90,0.35);
+  }
+  .company-table td {
+    padding: 1.4rem 0;
+    color: var(--text-mid);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--navy); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-lead { color: rgba(255,255,255,0.5); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; margin-top: 3rem; }
+  .contact-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(184,154,90,0.2);
+  }
+  .contact-detail { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-item { font-size: 0.85rem; }
+  .contact-item .label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .contact-item .val {
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+  .form-group label span { color: var(--gold); margin-left: 0.3rem; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,154,90,0.2);
+    color: var(--white);
+    padding: 0.85rem 1rem;
+    font-size: 0.84rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: rgba(184,154,90,0.5); }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--navy); }
+  .submit-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    padding: 1.2rem 3.2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    align-self: flex-start;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .submit-btn:hover { background: var(--gold); color: var(--navy); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #09192c;
+    border-top: 1px solid rgba(184,154,90,0.15);
+    padding: 2.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+  }
+  .footer-copy {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollLine {
+    0%, 100% { opacity: 0.3; }
+    50%       { opacity: 1; }
+  }
+
+  /* ─── TABLET（〜1024px） ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero-content { padding: 0 4rem; }
+    .hero-float-text { right: 2rem; }
+    .hero-badges { right: 3rem; bottom: 6rem; }
+    .section-inner { padding: 0 2.5rem; }
+    .strengths-list { grid-template-columns: 1fr 1fr; }
+    .greeting-inner { gap: 3rem; }
+    footer { padding: 2rem 2.5rem; }
+  }
+
+  /* ─── MOBILE（〜768px） ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; height: 64px; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(13,31,53,0.98);
+      padding: 2rem 1.5rem;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: 1px solid rgba(184,154,90,0.1); }
+    .nav-links a { display: block; padding: 1rem 0; font-size: 0.9rem; }
+    .hamburger { display: flex; }
+
+    section { padding: 5rem 0; }
+    #hero { min-height: 100vh; flex-direction: column; justify-content: center; }
+    .hero-content { padding: 5rem 1.5rem 2rem; max-width: 100%; }
+    .hero-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+    .hero-subtitle { font-size: 0.85rem; max-width: 100%; }
+    .hero-badges { position: static; flex-direction: column; padding: 0 1.5rem; gap: 0.8rem; }
+    .hero-scroll { display: none; }
+    .hero-float-text { display: none; }
+
+    .section-inner { padding: 0 1.5rem; }
+    .section-header { margin-bottom: 2.5rem; }
+    .business-grid { grid-template-columns: 1fr; }
+    .biz-card { padding: 2rem 1.5rem; }
+    .tab-content.active { grid-template-columns: 1fr; }
+    .tab-btn { padding: 0.9rem 1.2rem; font-size: 0.75rem; }
+    .strengths-list { grid-template-columns: 1fr; gap: 1.2rem; }
+
+    .flow-steps {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .flow-steps::before {
+      top: 28px; left: 28px; right: auto; bottom: 28px;
+      width: 1px; height: auto;
+      background: linear-gradient(to bottom, var(--gold), rgba(184,154,90,0.2));
+    }
+    .flow-step {
+      display: flex; align-items: flex-start;
+      gap: 1.2rem; text-align: left;
+      padding-bottom: 2rem; width: 100%;
+    }
+    .flow-step:last-child { padding-bottom: 0; }
+    .flow-circle { margin: 0; flex-shrink: 0; width: 48px; height: 48px; }
+    .flow-step h4 { margin-bottom: 0.3rem; }
+    .flow-step p { max-width: 100%; }
+
+    .greeting-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .greeting-text { border-left: none; padding-left: 0; border-top: 1px solid rgba(184,154,90,0.2); padding-top: 2rem; }
+    .company-table th { width: 130px; font-size: 0.9rem; padding-right: 1rem; }
+    .company-table td { font-size: 0.8rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .submit-btn { width: 100%; text-align: center; }
+    footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    .hero-badge span { font-size: 0.78rem; letter-spacing: 0.08em; }
+    .section-title { font-size: 1.6rem; }
+    .product-card { padding: 1.5rem; }
+    .strength-item { padding: 1.8rem 1.5rem; }
+    .company-table th { width: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <span></span>
+    Sansho Chemical Products
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#business">Business</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#strengths">Strengths</a></li>
+    <li><a href="#flow">Transaction Flow</a></li>
+    <li><a href="#greeting">Message</a></li>
+    <li><a href="#company">Company</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="sanshokasei.html" class="lang-switch">JA</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-label">Sansho Chemical Products Co., Ltd.</div>
+    <h1 class="hero-title">
+      Reliable Supply of<br>
+      <strong>Premium Chemical Materials.</strong>
+    </h1>
+    <p class="hero-subtitle">
+      Sansho Chemical Products Co., Ltd. is a Japan-based specialty trading company dedicated to the stable supply of high-quality chemical raw materials for food, cosmetics, and industrial applications. Built on trust, quality, and integrity since 1969.
+    </p>
+    <a href="#contact" class="hero-cta">Contact Us</a>
+  </div>
+
+  <div class="hero-float-text">
+    <span class="ft-since">SINCE 1969</span>
+    <span class="ft-trusted">Trusted by leading Japanese manufacturers</span>
+  </div>
+
+  <div class="hero-badges">
+    <div class="hero-badge"><span>Since 1969</span></div>
+    <div class="hero-badge"><span>Trusted by leading Japanese manufacturers</span></div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- BUSINESS -->
+<section id="business">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Business</div>
+      <h2 class="section-title">Our Business</h2>
+      <div class="divider"></div>
+      <p class="section-lead">
+        We specialize in the sale and import/export of high-quality chemical products manufactured by leading domestic Japanese manufacturers, serving clients across the food, cosmetics, and industrial sectors. We place the highest priority on integrity in every transaction and the cultivation of long-term partnerships.
+      </p>
+    </div>
+    <div class="business-grid">
+      <div class="biz-card">
+        <div class="biz-icon">I</div>
+        <h3>Procurement & Stable Supply</h3>
+        <p class="biz-lead">Strong partnerships with major Japanese manufacturers ensure reliable sourcing.</p>
+        <p>We maintain a continuous supply of raw materials for food, cosmetics, and industrial use, with systems in place to prevent supply disruptions.</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-icon">II</div>
+        <h3>Quality Control</h3>
+        <p class="biz-lead">Strict quality verification from the point of procurement.</p>
+        <p>We handle only products that meet manufacturer specifications and respond to quality-related inquiries with integrity and speed.</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-icon">III</div>
+        <h3>Technical Documents & Samples</h3>
+        <p class="biz-lead">Proactive support with product datasheets, SDS, and sample arrangements.</p>
+        <p>We provide full technical assistance during your product evaluation and development phases.</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-icon">IV</div>
+        <h3>Long-Term Partnership</h3>
+        <p class="biz-lead">Building lasting trust is our highest priority.</p>
+        <p>Beyond product supply, we are committed to supporting your production and procurement operations over the long term.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Products</div>
+      <h2 class="section-title">Products We Handle</h2>
+      <div class="divider"></div>
+      <p class="section-lead">We offer a comprehensive range of high-quality raw materials covering food, cosmetics, and industrial applications.</p>
+    </div>
+    <div class="products-tabs">
+      <button class="tab-btn active" onclick="showTab('oils')">Oleochemicals</button>
+      <button class="tab-btn" onclick="showTab('inorganic')">Inorganic Chemicals</button>
+    </div>
+    <div id="tab-oils" class="tab-content active">
+      <div class="product-card">
+        <div class="product-cat">Fatty Acids</div>
+        <h3>Fatty Acids</h3>
+        <ul>
+          <li>Oleic acid (industrial / food / cosmetic grade)</li>
+          <li>Various fatty acids (saturated & unsaturated)</li>
+          <li>Fatty acid derivatives</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Emulsifiers</div>
+        <h3>Emulsifiers</h3>
+        <ul>
+          <li>Sugar esters (sucrose fatty acid esters)</li>
+          <li>Emulsifiers for food & cosmetics</li>
+          <li>Various surfactants</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Oil & Fat Raw Materials</div>
+        <h3>Oil & Fat Raw Materials</h3>
+        <ul>
+          <li>Oil & fat raw materials for food</li>
+          <li>Oil & fat raw materials for cosmetics</li>
+          <li>Functional lipid ingredients</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Industrial Use</div>
+        <h3>Industrial Oleochemicals</h3>
+        <ul>
+          <li>Industrial fatty acids</li>
+          <li>Lubricant & processing aid raw materials</li>
+          <li>Chemicals for textile & metalworking</li>
+        </ul>
+      </div>
+    </div>
+    <div id="tab-inorganic" class="tab-content">
+      <div class="product-card">
+        <div class="product-cat">Titanium Dioxide — General</div>
+        <h3>Titanium Dioxide (General Grade)</h3>
+        <ul>
+          <li>Rutile type for paints & inks</li>
+          <li>For plastics & resins</li>
+          <li>For building materials & coatings</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Titanium Dioxide — High Whiteness</div>
+        <h3>Titanium Dioxide (High Whiteness)</h3>
+        <ul>
+          <li>High opacity grade</li>
+          <li>High brightness white grade</li>
+          <li>Surface-treated grades</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Titanium Dioxide — Special</div>
+        <h3>Titanium Dioxide (Special Grade)</h3>
+        <ul>
+          <li>Photocatalyst grade</li>
+          <li>Cosmetic & food-use grade</li>
+          <li>Electronic & functional material grade</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Inorganic Raw Materials</div>
+        <h3>Other Inorganic Chemical Materials</h3>
+        <ul>
+          <li>Inorganic pigments for paints & inks</li>
+          <li>Fillers for plastics</li>
+          <li>Industrial inorganic chemicals</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Zinc Compounds</div>
+        <h3>Zinc Oxide & Zinc Powder</h3>
+        <ul>
+          <li>Zinc oxide (various grades)</li>
+          <li>Zinc powder (industrial / cosmetic grade)</li>
+          <li>For rubber, coatings & cosmetics</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Zirconium Compounds</div>
+        <h3>Zirconium Silicate</h3>
+        <ul>
+          <li>For ceramics & tiles</li>
+          <li>For refractories & abrasives</li>
+          <li>Various industrial grades</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section id="strengths">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Strengths</div>
+      <h2 class="section-title">Why Choose Sansho</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="strengths-list">
+      <div class="strength-item featured">
+        <div class="strength-num">01</div>
+        <h3>Over 55 Years of Trading Experience</h3>
+        <p>Since our founding in 1969, we have built more than half a century of experience. The trust and credibility cultivated over these years are our greatest assets.</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">02</div>
+        <h3>Stable Supply from Japanese Manufacturers</h3>
+        <p>Through close collaboration with leading domestic manufacturers, we maintain a robust supply system for high-quality chemical raw materials.</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">03</div>
+        <h3>Wide Range of Applications</h3>
+        <p>From food and cosmetics to industrial uses, we cover a broad spectrum of applications and propose the most suitable products for your specifications.</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">04</div>
+        <h3>Flexible Order Quantities</h3>
+        <p>We accommodate both small evaluation orders and large-volume procurement, providing tailored support from initial trials to ongoing commercial supply.</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">05</div>
+        <h3>Technical Documents & Samples</h3>
+        <p>We proactively provide product specification sheets, SDS, and evaluation samples to support your R&D and quality assurance processes.</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">06</div>
+        <h3>High Compliance Standards</h3>
+        <p>As a Japanese company, we uphold rigorous legal compliance and ensure all transactions are conducted with transparency, integrity, and promptness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Transaction Flow</div>
+      <h2 class="section-title">How We Work With You</h2>
+      <div class="divider"></div>
+      <p class="section-lead">We provide consistent support from your first inquiry through to final delivery.</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-circle"><span>1</span></div>
+        <h4>Initial Inquiry</h4>
+        <p>Contact us by email or phone</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>2</span></div>
+        <h4>Product Proposal</h4>
+        <p>We propose the best product for your needs</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>3</span></div>
+        <h4>Quotation</h4>
+        <p>Formal quotation based on quantity & specs</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>4</span></div>
+        <h4>Sample Delivery</h4>
+        <p>Evaluation samples & technical documents provided</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>5</span></div>
+        <h4>Order Placement</h4>
+        <p>Prompt processing upon order confirmation</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>6</span></div>
+        <h4>Delivery</h4>
+        <p>Reliable delivery following quality inspection</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GREETING -->
+<section id="greeting">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Message from the President</div>
+      <h2 class="section-title">President's Message</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="greeting-inner">
+      <div class="greeting-meta">
+        <div class="role">President & CEO</div>
+        <div class="name">Naoyuki Kashiwabara</div>
+        <div class="company">Sansho Chemical Products Co., Ltd.</div>
+      </div>
+      <div class="greeting-text">
+        <p>
+          Since our founding in 1969, Sansho Chemical Products Co., Ltd. has operated as a specialty trading company in the chemical sector, conducting every transaction with sincerity and placing the highest priority on building lasting relationships of trust with our clients both in Japan and abroad.
+        </p>
+        <p>
+          Our mission is to support the continued, stable production activities of our clients by ensuring a reliable supply of high-quality chemical raw materials. At every stage — procurement, quality control, and technical information provision — we maintain an uncompromising standard of integrity.
+        </p>
+        <p>
+          Even as market conditions evolve, we are committed to maintaining strong ties with leading Japanese manufacturers to uphold the stability of supply and the reliability of product quality. We firmly believe that long-term partnerships with our clients define the very purpose of our business.
+        </p>
+        <p>
+          Together as a company, we are dedicated to meeting the trust and expectations placed in us. We look forward to the opportunity to serve you and to grow together over the long term.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section id="company">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Company Profile</div>
+      <h2 class="section-title">Company Overview</h2>
+      <div class="divider"></div>
+    </div>
+    <table class="company-table">
+      <tbody>
+        <tr>
+          <th>Company Name</th>
+          <td>Sansho Chemical Products Co., Ltd.<br><span style="font-size:0.8rem;color:#888;">（三昭化成株式会社）</span></td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td>Inoue Building 2F, 1-5-9 Hiranomachi, Chuo-ku, Osaka, Japan</td>
+        </tr>
+        <tr>
+          <th>Established</th>
+          <td>December 18, 1969 (Showa 44)</td>
+        </tr>
+        <tr>
+          <th>Business Activities</th>
+          <td>Sale, import, and export of chemical products</td>
+        </tr>
+        <tr>
+          <th>Major Business Partners</th>
+          <td>Maruo Calcium Co., Ltd. / Mitsubishi Chemical Corporation / Tayca Corporation / Meiji Yushi Co., Ltd. / Dai Nippon Printing Co., Ltd. (DNP)</td>
+        </tr>
+        <tr>
+          <th>Main Product Categories</th>
+          <td>Oleochemicals, fatty acids, emulsifiers, titanium dioxide, zinc oxide, zinc powder, zirconium silicate, industrial chemical raw materials</td>
+        </tr>
+        <tr>
+          <th>Transaction Types</th>
+          <td>Domestic sales / Import & export transactions with overseas manufacturers</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>sales@sanshokasei.com</td>
+        </tr>
+        <tr>
+          <th>Phone</th>
+          <td>+81-6-6231-5121</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="divider"></div>
+      <p class="section-lead">For product inquiries or requests for quotation, please use the form below or contact us directly.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Direct Contact</h3>
+        <div class="contact-detail">
+          <div class="contact-item">
+            <div class="label">Email</div>
+            <div class="val">sales@sanshokasei.com</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Phone</div>
+            <div class="val">+81-6-6231-5121</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Address</div>
+            <div class="val">Inoue Building 2F,<br>1-5-9 Hiranomachi,<br>Chuo-ku, Osaka, Japan</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Established</div>
+            <div class="val">December 18, 1969 (Showa 44)</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Company Name<span>*</span></label>
+            <input type="text" placeholder="Your Company Name">
+          </div>
+          <div class="form-group">
+            <label>Contact Person<span>*</span></label>
+            <input type="text" placeholder="Your Full Name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email Address<span>*</span></label>
+            <input type="email" placeholder="email@company.com">
+          </div>
+          <div class="form-group">
+            <label>Phone Number<span>*</span></label>
+            <input type="tel" placeholder="+1-000-000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Product of Interest (Optional)</label>
+          <select>
+            <option value="">— Select a product category —</option>
+            <option>Fatty Acids (Oleic Acid, etc.)</option>
+            <option>Fatty Acid Derivatives</option>
+            <option>Oil & Fat Raw Materials (Food / Cosmetic)</option>
+            <option>Emulsifiers (Sugar Esters, etc.)</option>
+            <option>Industrial Oleochemicals</option>
+            <option>Titanium Dioxide (General Grade)</option>
+            <option>Titanium Dioxide (High Whiteness)</option>
+            <option>Titanium Dioxide (Special Grade)</option>
+            <option>Zinc Oxide</option>
+            <option>Zinc Powder</option>
+            <option>Zirconium Silicate</option>
+            <option>Other Inorganic Chemical Materials</option>
+            <option>Multiple Products / Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message<span>*</span></label>
+          <textarea placeholder="Please describe your inquiry, required quantity, intended use, etc."></textarea>
+        </div>
+        <button class="submit-btn">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sansho Chemical Products Co., Ltd.</div>
+  <div class="footer-copy">© 2024 Sansho Chemical Products Co., Ltd. All Rights Reserved.</div>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Tab switching
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // Nav active highlight
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) cur = s.id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur
+        ? 'var(--gold-light)' : '';
+    });
+  });
+</script>
+</body>
+</html>
