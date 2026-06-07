@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三昭化成株式会社 | 化学製品専門商社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f35;
+    --navy-mid: #162e4d;
+    --navy-light: #1e3d63;
+    --gold: #b89a5a;
+    --gold-light: #d4b87a;
+    --cream: #f5f0e8;
+    --cream-dark: #ede6d8;
+    --white: #ffffff;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #7a7a7a;
+    --border: rgba(184,154,90,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(13,31,53,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4rem;
+    height: 72px;
+  }
+  .nav-logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .nav-logo span {
+    display: inline-block;
+    width: 2px; height: 28px;
+    background: var(--gold);
+  }
+  .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 40% 50%, rgba(30,61,99,0.7) 0%, transparent 70%),
+      linear-gradient(135deg, #0d1f35 0%, #162e4d 50%, #0a1828 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(184,154,90,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,154,90,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 8rem;
+    max-width: 900px;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    opacity: 0.9;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+    margin-right: 1rem;
+    vertical-align: middle;
+  }
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+    margin-bottom: 2rem;
+  }
+  .hero-title strong {
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.9;
+    letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 1rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+  .hero-cta:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .hero-cta::after { content: '→'; }
+  /* Hero floating text（右側背景テキスト） */
+  .hero-float-text {
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    transform: translateY(-60%);
+    z-index: 1;
+    display: flex; flex-direction: column;
+    align-items: flex-end;
+    gap: 0.6rem;
+    pointer-events: none;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+  .hero-float-text span {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    color: rgba(184,154,90,0.17);
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    white-space: nowrap;
+    display: block;
+  }
+  .hero-float-text .ft-since { font-size: clamp(2rem, 2.8vw, 3.2rem); }
+  .hero-float-text .ft-trusted { font-size: clamp(1rem, 1.4vw, 1.6rem); letter-spacing: 0.08em; }
+
+  .hero-badges {
+    position: absolute; right: 5rem; bottom: 8rem;
+    display: flex; flex-direction: column; gap: 1rem;
+    z-index: 2;
+    animation: fadeUp 1.4s ease 0.4s both;
+  }
+  .hero-badge {
+    border: 1px solid rgba(184,154,90,0.28);
+    padding: 0.65rem 1.4rem;
+    background: rgba(13,31,53,0.45);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hero-badge::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .hero-badge span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.15em;
+    font-weight: 300;
+    white-space: nowrap;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 3rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.65rem; letter-spacing: 0.2em;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block; width: 1px; height: 48px;
+    background: linear-gradient(to bottom, rgba(184,154,90,0.5), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 7rem 0; }
+  .section-inner { max-width: 1120px; margin: 0 auto; padding: 0 4rem; }
+  .section-header { margin-bottom: 4rem; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--gold);
+    margin-right: 0.8rem;
+    vertical-align: middle;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+  .section-lead {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 2;
+    letter-spacing: 0.05em;
+    max-width: 640px;
+    margin-top: 1.5rem;
+    font-weight: 300;
+  }
+  .divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-top: 1.5rem;
+  }
+
+  /* ─── BUSINESS ─── */
+  #business { background: var(--cream); }
+  .business-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 3rem;
+    background: var(--border);
+  }
+  .biz-card {
+    background: var(--cream);
+    padding: 2.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .biz-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .biz-card:hover::before { opacity: 1; }
+  .biz-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    color: rgba(184,154,90,0.12);
+    font-size: 1.4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+  }
+  .biz-card h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .biz-card .biz-lead {
+    font-size: 0.88rem;
+    color: var(--navy);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .biz-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.95;
+    letter-spacing: 0.04em;
+    font-weight: 300;
+  }
+
+  /* ─── PRODUCTS ─── */
+  #products { background: var(--navy); }
+  #products .section-title { color: var(--white); }
+  #products .section-lead { color: rgba(255,255,255,0.55); }
+  .products-tabs {
+    display: flex; gap: 0; margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(184,154,90,0.2);
+  }
+  .tab-btn {
+    background: none; border: none;
+    padding: 1.1rem 2.4rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.45);
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    position: relative;
+    transition: color 0.2s;
+    min-height: 48px;
+  }
+  .tab-btn.active { color: var(--gold-light); }
+  .tab-btn.active::after {
+    content: '';
+    position: absolute; bottom: -1px; left: 0; right: 0;
+    height: 2px; background: var(--gold);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .product-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,154,90,0.12);
+    padding: 2rem 2.4rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .product-card:hover {
+    border-color: rgba(184,154,90,0.35);
+    background: rgba(255,255,255,0.06);
+  }
+  .product-cat {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .product-card h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+  }
+  .product-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .product-card ul li {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    padding-left: 1rem;
+    position: relative;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+  .product-card ul li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--gold); opacity: 0.5;
+    font-size: 0.7rem;
+  }
+
+  /* ─── STRENGTHS ─── */
+  #strengths { background: var(--cream-dark); }
+  .strengths-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .strength-item {
+    padding: 2.4rem;
+    background: var(--cream);
+    border-top: 2px solid var(--gold);
+    position: relative;
+  }
+  .strength-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.0rem;
+    color: var(--gold);
+    opacity: 0.2;
+    line-height: 1;
+    position: absolute;
+    top: 1.2rem; right: 1.5rem;
+    font-weight: 300;
+  }
+  .strength-item h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+  }
+  .strength-item.featured h3 {
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .strength-item.featured .strength-num {
+    opacity: 0.28;
+  }
+  .strength-item p {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    font-weight: 300;
+  }
+
+  /* ─── FLOW ─── */
+  #flow { background: var(--white); }
+  .flow-steps {
+    display: flex; align-items: flex-start;
+    gap: 0; margin-top: 3rem;
+    position: relative;
+  }
+  .flow-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 28px; right: 28px;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), rgba(184,154,90,0.2));
+  }
+  .flow-step {
+    flex: 1; text-align: center;
+    position: relative;
+    padding-top: 0;
+  }
+  .flow-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .flow-circle span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+  .flow-step h4 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .flow-step p {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+    font-weight: 300;
+    max-width: 120px; margin: 0 auto;
+  }
+
+  /* ─── GREETING ─── */
+  #greeting { background: var(--navy-mid); }
+  #greeting .section-title { color: var(--white); }
+  .greeting-inner {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .greeting-meta {
+    border-top: 1px solid rgba(184,154,90,0.3);
+    padding-top: 2rem;
+  }
+  .greeting-meta .role {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .greeting-meta .name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: 0.15em;
+    font-weight: 300;
+  }
+  .greeting-meta .company {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+  .greeting-text {
+    border-left: 1px solid rgba(184,154,90,0.2);
+    padding-left: 3rem;
+  }
+  .greeting-text p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 2.1;
+    letter-spacing: 0.06em;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ─── COMPANY ─── */
+  #company { background: var(--cream); }
+  .company-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3rem;
+    font-size: 0.86rem;
+  }
+  .company-table tr { border-bottom: 1px solid var(--cream-dark); }
+  .company-table tr:first-child { border-top: 2px solid var(--gold); }
+  .company-table th {
+    text-align: left;
+    padding: 1.4rem 2rem 1.4rem 1rem;
+    color: var(--navy);
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 500;
+    width: 200px;
+    letter-spacing: 0.08em;
+    vertical-align: top;
+    border-left: 2px solid rgba(184,154,90,0.35);
+  }
+  .company-table td {
+    padding: 1.4rem 0;
+    color: var(--text-mid);
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    font-weight: 300;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--navy); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-lead { color: rgba(255,255,255,0.5); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; margin-top: 3rem; }
+  .contact-info h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(184,154,90,0.2);
+  }
+  .contact-detail {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .contact-item { font-size: 0.85rem; }
+  .contact-item .label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .contact-item .val {
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.05em;
+    font-weight: 300;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+  .form-group label span { color: var(--gold); margin-left: 0.3rem; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,154,90,0.2);
+    color: var(--white);
+    padding: 0.85rem 1rem;
+    font-size: 0.84rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: rgba(184,154,90,0.5);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--navy); }
+  .submit-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    padding: 1.2rem 3.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    align-self: flex-start;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .submit-btn:hover { background: var(--gold); color: var(--navy); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #09192c;
+    border-top: 1px solid rgba(184,154,90,0.15);
+    padding: 2.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.15em;
+  }
+  .footer-copy {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollLine {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+
+
+  .nav-right {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .lang-switch {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(184,154,90,0.5);
+    color: var(--gold-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    transition: all 0.25s;
+    flex-shrink: 0;
+  
+  }
+  .lang-switch:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+    z-index: 1100;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 1.5px;
+    background: var(--gold);
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ─── TABLET（〜1024px） ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero-content { padding: 0 4rem; }
+    .hero-float-text { right: 2rem; }
+    .hero-badges { right: 3rem; bottom: 6rem; }
+    .section-inner { padding: 0 2.5rem; }
+    .strengths-list { grid-template-columns: 1fr 1fr; }
+    .greeting-inner { gap: 3rem; }
+    footer { padding: 2rem 2.5rem; }
+  }
+
+  /* ─── MOBILE（〜768px） ─── */
+  @media (max-width: 768px) {
+    /* Nav */
+    nav { padding: 0 1.5rem; height: 64px; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(13,31,53,0.98);
+      padding: 2rem 1.5rem;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: 1px solid rgba(184,154,90,0.1); }
+    .nav-links a {
+      display: block;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .hamburger { display: flex; }
+
+    /* Hero */
+    section { padding: 5rem 0; }
+    #hero { min-height: 100vh; align-items: flex-end; padding-bottom: 7rem; }
+    .hero-content {
+      padding: 5rem 1.5rem 2rem;
+      max-width: 100%;
+    }
+    .hero-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    .hero-subtitle { font-size: 0.85rem; max-width: 100%; }
+    .hero-badges {
+      position: static;
+      flex-direction: column;
+      padding: 0 1.5rem;
+      gap: 0.8rem;
+      animation: fadeUp 1.4s ease 0.4s both;
+    }
+    #hero { flex-direction: column; justify-content: center; }
+    .hero-scroll { display: none; }
+    .hero-float-text { display: none; }
+
+    /* Sections */
+    .section-inner { padding: 0 1.5rem; }
+    .section-header { margin-bottom: 2.5rem; }
+
+    /* Business */
+    .business-grid { grid-template-columns: 1fr; }
+    .biz-card { padding: 2rem 1.5rem; }
+
+    /* Products */
+    .tab-content.active { grid-template-columns: 1fr; }
+    .tab-btn { padding: 0.9rem 1.2rem; font-size: 0.78rem; }
+
+    /* Strengths */
+    .strengths-list { grid-template-columns: 1fr; gap: 1.2rem; }
+
+    /* Flow */
+    .flow-steps {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .flow-steps::before {
+      top: 28px; left: 28px; right: auto; bottom: 28px;
+      width: 1px; height: auto;
+      background: linear-gradient(to bottom, var(--gold), rgba(184,154,90,0.2));
+    }
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      text-align: left;
+      padding-bottom: 2rem;
+      width: 100%;
+    }
+    .flow-step:last-child { padding-bottom: 0; }
+    .flow-circle { margin: 0; flex-shrink: 0; width: 48px; height: 48px; }
+    .flow-step h4 { margin-bottom: 0.3rem; }
+    .flow-step p { max-width: 100%; }
+
+    /* Greeting */
+    .greeting-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .greeting-text { border-left: none; padding-left: 0; border-top: 1px solid rgba(184,154,90,0.2); padding-top: 2rem; }
+
+    /* Company */
+    .company-table th { width: 120px; font-size: 0.8rem; padding-right: 1rem; }
+    .company-table td { font-size: 0.8rem; }
+
+    /* Contact */
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .submit-btn { width: 100%; text-align: center; }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      gap: 0.8rem;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  /* ─── SMALL MOBILE（〜480px） ─── */
+  @media (max-width: 480px) {
+    .hero-title { font-size: clamp(1.6rem, 6vw, 2rem); }
+    .hero-badge span { font-size: 0.82rem; letter-spacing: 0.08em; }
+    .section-title { font-size: 1.5rem; }
+    .product-card { padding: 1.5rem; }
+    .strength-item { padding: 1.8rem 1.5rem; }
+    .company-table th { width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <span></span>
+    三昭化成株式会社
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#business">事業内容</a></li>
+    <li><a href="#products">取扱製品</a></li>
+    <li><a href="#strengths">強み</a></li>
+    <li><a href="#flow">取引の流れ</a></li>
+    <li><a href="#greeting">代表挨拶</a></li>
+    <li><a href="#company">会社概要</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="/en/" class="lang-switch">EN</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-label">Sansho Chemical Products Co., Ltd.</div>
+    <h1 class="hero-title">
+      高品質な化学原料を、<br><strong>確かな供給力</strong>で。
+    </h1>
+    <p class="hero-subtitle">
+      三昭化成株式会社は、国内メーカーと連携し、食品・化粧品・工業用途向け化学原料の安定供給を使命とする専門商社です。信頼性・品質・誠実な対応を基盤に、お客様の事業を支えてまいります。
+    </p>
+    <a href="#contact" class="hero-cta">お問い合わせ</a>
+  </div>
+
+  <div class="hero-float-text">
+    <span class="ft-since">SINCE 1969</span>
+    <span class="ft-trusted">Trusted by leading Japanese manufacturers</span>
+  </div>
+
+  <div class="hero-badges">
+    <div class="hero-badge"><span>Since 1969</span></div>
+    <div class="hero-badge"><span>Trusted by leading Japanese manufacturers</span></div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- BUSINESS -->
+<section id="business">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Business</div>
+      <h2 class="section-title">事業内容</h2>
+      <div class="divider"></div>
+      <p class="section-lead">
+        当社は、国内メーカーが製造する高品質な化学製品の販売・輸出入を中心に、食品・化粧品・工業分野におけるお客様の調達課題に応じてまいりました。誠実な取引姿勢と長期的パートナーシップを何よりも重視しております。
+      </p>
+    </div>
+    <div class="business-grid">
+      <div class="biz-card">
+        <div class="biz-icon">I</div>
+        <h3>調達力・安定供給</h3>
+        <p class="biz-lead">国内主要メーカーとの強固な連携により、原料を安定的に確保します。</p>
+        <p>食品・化粧品・工業用途向け原料を継続的にご供給いたします。供給途絶を防ぐ体制づくりにも注力しております。</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-icon">II</div>
+        <h3>品質管理</h3>
+        <p class="biz-lead">仕入段階から厳格な品質確認を実施します。</p>
+        <p>メーカー規格に合致した製品のみを取り扱い、品質に関するご要望には誠実かつ迅速に対応いたします。</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-icon">III</div>
+        <h3>技術資料・サンプル対応</h3>
+        <p class="biz-lead">製品仕様書・SDSの提供とサンプル手配に積極的に対応します。</p>
+        <p>お客様の製品評価・開発フェーズを技術面からしっかりと支援いたします。</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-icon">IV</div>
+        <h3>長期的パートナーシップ</h3>
+        <p class="biz-lead">継続的な信頼関係の構築を最優先に考えます。</p>
+        <p>単なる製品供給にとどまらず、お客様の生産・調達活動を長期的に支援することを使命としております。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Products</div>
+      <h2 class="section-title">取扱製品</h2>
+      <div class="divider"></div>
+      <p class="section-lead">食品・化粧品・工業用途の幅広い分野に対応した高品質原料を取り扱っております。</p>
+    </div>
+    <div class="products-tabs">
+      <button class="tab-btn active" onclick="showTab('oils')">油脂化学製品</button>
+      <button class="tab-btn" onclick="showTab('inorganic')">無機化学製品</button>
+    </div>
+    <div id="tab-oils" class="tab-content active">
+      <div class="product-card">
+        <div class="product-cat">Fatty Acids</div>
+        <h3>脂肪酸</h3>
+        <ul>
+          <li>オレイン酸（工業用・食品用・化粧品用）</li>
+          <li>各種脂肪酸（飽和・不飽和）</li>
+          <li>脂肪酸誘導体</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Emulsifiers</div>
+        <h3>乳化剤</h3>
+        <ul>
+          <li>シュガーエステル（ショ糖脂肪酸エステル）</li>
+          <li>食品・化粧品向け乳化剤</li>
+          <li>各種界面活性剤</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Oil & Fat Raw Materials</div>
+        <h3>油脂原料</h3>
+        <ul>
+          <li>食品向け油脂原料</li>
+          <li>化粧品向け油脂原料</li>
+          <li>機能性油脂素材</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Industrial Use</div>
+        <h3>工業用途向け油脂化学品</h3>
+        <ul>
+          <li>工業用脂肪酸</li>
+          <li>潤滑・加工助剤原料</li>
+          <li>繊維・金属加工向け化学品</li>
+        </ul>
+      </div>
+    </div>
+    <div id="tab-inorganic" class="tab-content">
+      <div class="product-card">
+        <div class="product-cat">Titanium Dioxide — General</div>
+        <h3>酸化チタン（汎用品）</h3>
+        <ul>
+          <li>塗料・インキ向けルチル型</li>
+          <li>プラスチック・樹脂向け</li>
+          <li>建材・コーティング向け</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Titanium Dioxide — High Whiteness</div>
+        <h3>酸化チタン（高白色度品）</h3>
+        <ul>
+          <li>高隠蔽力グレード</li>
+          <li>高輝度白色グレード</li>
+          <li>表面処理品</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Titanium Dioxide — Special</div>
+        <h3>酸化チタン（特殊グレード）</h3>
+        <ul>
+          <li>光触媒グレード</li>
+          <li>化粧品・食品用グレード</li>
+          <li>電子材料・機能材料向け</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Inorganic Raw Materials</div>
+        <h3>その他無機化学原料</h3>
+        <ul>
+          <li>塗料・インキ向け無機顔料</li>
+          <li>プラスチック用充填剤</li>
+          <li>工業用無機化学品</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Zinc Compounds</div>
+        <h3>酸化亜鉛・亜鉛末</h3>
+        <ul>
+          <li>酸化亜鉛（各種グレード）</li>
+          <li>亜鉛末（工業用・化粧品用）</li>
+          <li>ゴム・塗料・化粧品向け</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-cat">Zirconium Compounds</div>
+        <h3>ケイ酸ジルコニウム</h3>
+        <ul>
+          <li>セラミックス・タイル向け</li>
+          <li>耐火物・研磨材向け</li>
+          <li>各種工業用グレード</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section id="strengths">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Strengths</div>
+      <h2 class="section-title">三昭化成の強み</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="strengths-list">
+      <div class="strength-item featured">
+        <div class="strength-num">01</div>
+        <h3>55年以上の取引実績</h3>
+        <p>1969年の創業以来、半世紀を超える取引経験を積み重ねてまいりました。長年の実績が培った信用と信頼は、当社の最大の財産です。</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">02</div>
+        <h3>国内メーカー品の安定供給</h3>
+        <p>国内主要メーカーと密接な連携を図り、高品質な化学原料を安定的にご供給する体制を整備しております。</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">03</div>
+        <h3>幅広い用途への対応</h3>
+        <p>食品・化粧品・工業用途まで多様な分野に対応しており、お客様の用途・規格に応じた最適製品をご提案いたします。</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">04</div>
+        <h3>少量から大口まで対応</h3>
+        <p>少量からの評価発注にも柔軟に対応いたします。新規取引の開始から大口定期調達まで、お客様の状況に応じたご支援が可能です。</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">05</div>
+        <h3>技術資料・サンプル提供</h3>
+        <p>製品スペックシート・SDS・評価用サンプルの提供に積極的に取り組み、お客様の製品開発・品質評価を技術面から支援いたします。</p>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">06</div>
+        <h3>高いコンプライアンス意識</h3>
+        <p>日本企業としての高い法令遵守意識のもと、すべての取引において誠実・透明・迅速な対応を徹底しております。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Transaction Flow</div>
+      <h2 class="section-title">取引の流れ</h2>
+      <div class="divider"></div>
+      <p class="section-lead">初回のお問い合わせから納品まで、一貫してサポートいたします。</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-circle"><span>1</span></div>
+        <h4>初回問い合わせ</h4>
+        <p>メール・お電話にてお気軽にご連絡ください</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>2</span></div>
+        <h4>製品提案</h4>
+        <p>用途・仕様に応じた最適製品をご提案</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>3</span></div>
+        <h4>見積</h4>
+        <p>数量・仕様に基づき正式見積書を発行</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>4</span></div>
+        <h4>サンプル提供</h4>
+        <p>評価用サンプルおよび技術資料をご提供</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>5</span></div>
+        <h4>受注</h4>
+        <p>ご発注確認後、速やかに手配を開始</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle"><span>6</span></div>
+        <h4>納品</h4>
+        <p>品質確認のうえ、確実に納品いたします</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GREETING -->
+<section id="greeting">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Message from the President</div>
+      <h2 class="section-title">代表挨拶</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="greeting-inner">
+      <div class="greeting-meta">
+        <div class="role">代表取締役</div>
+        <div class="name">柏原 直之</div>
+        <div class="company">三昭化成株式会社</div>
+      </div>
+      <div class="greeting-text">
+        <p>
+          三昭化成株式会社は、1969年の創業以来、化学製品の専門商社として国内外のお客様との取引に誠実に向き合い、信頼関係の構築を最優先に歩んでまいりました。
+        </p>
+        <p>
+          当社の使命は、高品質な化学原料を安定的に供給することにより、お客様の生産活動を継続的かつ確実に支えることにあります。調達・品質管理・技術情報提供の各段階において、一切の妥協を排し、誠実な対応を徹底してまいります。
+        </p>
+        <p>
+          変化する市場環境においても、当社は国内主要メーカーとの強固な連携を維持し、供給の安定性と製品品質の信頼性を守り続けてまいります。お客様との長期的なパートナーシップこそが、当社の存在意義であると確信しております。
+        </p>
+        <p>
+          皆様のご信頼とご期待に応えるべく、役職員一丸となって取り組んでまいります。今後ともご指導ご愛顧を賜りますよう、謹んでお願い申し上げます。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section id="company">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Company Profile</div>
+      <h2 class="section-title">会社概要</h2>
+      <div class="divider"></div>
+    </div>
+    <table class="company-table">
+      <tbody>
+        <tr>
+          <th>会社名</th>
+          <td>三昭化成株式会社</td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>大阪府大阪市中央区平野町1丁目5-9　井上ビル2階</td>
+        </tr>
+        <tr>
+          <th>設立</th>
+          <td>昭和44年（1969年）12月18日</td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>化学製品の販売および輸出入</td>
+        </tr>
+        <tr>
+          <th>主な販売先</th>
+          <td>丸尾カルシウム株式会社、三菱ケミカル株式会社、テイカ株式会社、明治油脂株式会社、大日本印刷株式会社（DNP）</td>
+        </tr>
+        <tr>
+          <th>主要取扱品目</th>
+          <td>油脂化学製品、脂肪酸、乳化剤、酸化チタン、酸化亜鉛、亜鉛末、ケイ酸ジルコニウム、工業用化学原料</td>
+        </tr>
+        <tr>
+          <th>取引形態</th>
+          <td>国内販売・海外メーカーとの輸出入取引</td>
+        </tr>
+        <tr>
+          <th>連絡先（メール）</th>
+          <td>sales@sanshokasei.com</td>
+        </tr>
+        <tr>
+          <th>連絡先（電話）</th>
+          <td>06-6231-5121</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="divider"></div>
+      <p class="section-lead">取扱製品に関するご相談・お見積のご依頼は、下記フォームまたは直接ご連絡ください。</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>直接のお問い合わせ</h3>
+        <div class="contact-detail">
+          <div class="contact-item">
+            <div class="label">Email</div>
+            <div class="val">sales@sanshokasei.com</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Tel</div>
+            <div class="val">06-6231-5121</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">所在地</div>
+            <div class="val">大阪府大阪市中央区平野町1丁目5-9　井上ビル2階</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">設立</div>
+            <div class="val">昭和44年（1969年）12月18日</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>会社名<span>*</span></label>
+            <input type="text" placeholder="株式会社〇〇">
+          </div>
+          <div class="form-group">
+            <label>担当者名<span>*</span></label>
+            <input type="text" placeholder="山田 太郎">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>メールアドレス<span>*</span></label>
+            <input type="email" placeholder="example@company.com">
+          </div>
+          <div class="form-group">
+            <label>電話番号<span>*</span></label>
+            <input type="tel" placeholder="03-0000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>希望製品（任意）</label>
+          <select>
+            <option value="">— 製品カテゴリをお選びください —</option>
+            <option>脂肪酸（オレイン酸ほか）</option>
+            <option>脂肪酸誘導体</option>
+            <option>食品・化粧品向け油脂原料</option>
+            <option>乳化剤（シュガーエステル等）</option>
+            <option>工業用途向け油脂化学品</option>
+            <option>酸化チタン（汎用品）</option>
+            <option>酸化チタン（高白色度品）</option>
+            <option>酸化チタン（特殊グレード）</option>
+            <option>酸化亜鉛</option>
+            <option>亜鉛末</option>
+            <option>ケイ酸ジルコニウム</option>
+            <option>その他無機化学原料</option>
+            <option>その他・複数製品</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ内容<span>*</span></label>
+          <textarea placeholder="ご相談内容、必要数量、用途等をご記入ください。"></textarea>
+        </div>
+        <button class="submit-btn">送信する</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">三昭化成株式会社</div>
+  <div class="footer-copy">© 2024 Sansho Chemical Products Co., Ltd. All Rights Reserved.</div>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Tab switching
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // Nav active highlight
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) cur = s.id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur
+        ? 'var(--gold-light)' : '';
+    });
+  });
+</script>
+</body>
+</html>
