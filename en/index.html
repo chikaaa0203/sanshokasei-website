@@ -673,6 +673,16 @@
     text-transform: uppercase;
   }
   .submit-btn:hover { background: var(--gold); color: var(--navy); }
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .submit-btn:disabled:hover { background: transparent; color: var(--gold-light); }
+  .form-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
 
   /* ─── FOOTER ─── */
   footer {
@@ -1195,30 +1205,30 @@
           </div>
         </div>
       </div>
-      <div class="contact-form">
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xpqeewyd" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label>Company Name<span>*</span></label>
-            <input type="text" placeholder="Your Company Name">
+            <input type="text" id="f-company" name="company" placeholder="Your Company Name" required>
           </div>
           <div class="form-group">
             <label>Contact Person<span>*</span></label>
-            <input type="text" placeholder="Your Full Name">
+            <input type="text" id="f-name" name="name" placeholder="Your Full Name" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Email Address<span>*</span></label>
-            <input type="email" placeholder="email@company.com">
+            <input type="email" id="f-email" name="email" placeholder="email@company.com" required>
           </div>
           <div class="form-group">
             <label>Phone Number<span>*</span></label>
-            <input type="tel" placeholder="+1-000-000-0000">
+            <input type="tel" id="f-tel" name="tel" placeholder="+1-000-000-0000" required>
           </div>
         </div>
         <div class="form-group">
           <label>Product of Interest (Optional)</label>
-          <select>
+          <select id="f-product" name="product">
             <option value="">— Select a product category —</option>
             <option>Fatty Acids (Oleic Acid, etc.)</option>
             <option>Fatty Acid Derivatives</option>
@@ -1237,11 +1247,14 @@
         </div>
         <div class="form-group">
           <label>Message<span>*</span></label>
-          <textarea placeholder="Please describe your inquiry, required quantity, intended use, etc."></textarea>
+          <textarea id="f-message" name="message" placeholder="Please describe your inquiry, required quantity, intended use, etc." required></textarea>
         </div>
-        <button class="submit-btn">Send Message</button>
-      </div>
+        <input type="hidden" name="_subject" value="New Inquiry from Sansho Chemical Products Website">
+        <p class="form-note" id="formNote"></p>
+        <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+      </form>
     </div>
+  </div>
   </div>
 </section>
 
@@ -1265,6 +1278,56 @@
       navLinks.classList.remove('open');
     });
   });
+
+  // Contact form → Formspree
+  const contactForm = document.getElementById('contactForm');
+  const formNote = document.getElementById('formNote');
+  const submitBtn = document.getElementById('submitBtn');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const company = document.getElementById('f-company').value.trim();
+      const name = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const tel = document.getElementById('f-tel').value.trim();
+      const message = document.getElementById('f-message').value.trim();
+
+      if (!company || !name || !email || !tel || !message) {
+        formNote.textContent = 'Please fill in all required fields (*).';
+        formNote.style.color = '#e0a0a0';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      formNote.style.color = 'rgba(255,255,255,0.45)';
+      formNote.textContent = '';
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then((response) => {
+          if (response.ok) {
+            formNote.style.color = '#9fd9a8';
+            formNote.textContent = 'Your inquiry has been sent. Thank you for contacting us.';
+            contactForm.reset();
+          } else {
+            throw new Error('Submission failed');
+          }
+        })
+        .catch(() => {
+          formNote.style.color = '#e0a0a0';
+          formNote.textContent = 'Submission failed. Please contact us directly at sales@sanshokasei.com.';
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        });
+    });
+  }
 
   // Tab switching
   function showTab(id) {
