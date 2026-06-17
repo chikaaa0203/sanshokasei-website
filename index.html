@@ -653,6 +653,17 @@
     text-transform: uppercase;
   }
   .submit-btn:hover { background: var(--gold); color: var(--navy); }
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .submit-btn:disabled:hover { background: transparent; color: var(--gold-light); }
+  .form-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
 
   /* ─── FOOTER ─── */
   footer {
@@ -1261,30 +1272,30 @@
           </div>
         </div>
       </div>
-      <div class="contact-form">
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xpqeewyd" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label>会社名<span>*</span></label>
-            <input type="text" placeholder="株式会社〇〇">
+            <input type="text" id="f-company" name="company" placeholder="株式会社〇〇" required>
           </div>
           <div class="form-group">
             <label>担当者名<span>*</span></label>
-            <input type="text" placeholder="山田 太郎">
+            <input type="text" id="f-name" name="name" placeholder="山田 太郎" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>メールアドレス<span>*</span></label>
-            <input type="email" placeholder="example@company.com">
+            <input type="email" id="f-email" name="email" placeholder="example@company.com" required>
           </div>
           <div class="form-group">
             <label>電話番号<span>*</span></label>
-            <input type="tel" placeholder="03-0000-0000">
+            <input type="tel" id="f-tel" name="tel" placeholder="03-0000-0000" required>
           </div>
         </div>
         <div class="form-group">
           <label>希望製品（任意）</label>
-          <select>
+          <select id="f-product" name="product">
             <option value="">— 製品カテゴリをお選びください —</option>
             <option>脂肪酸（オレイン酸ほか）</option>
             <option>脂肪酸誘導体</option>
@@ -1303,10 +1314,12 @@
         </div>
         <div class="form-group">
           <label>お問い合わせ内容<span>*</span></label>
-          <textarea placeholder="ご相談内容、必要数量、用途等をご記入ください。"></textarea>
+          <textarea id="f-message" name="message" placeholder="ご相談内容、必要数量、用途等をご記入ください。" required></textarea>
         </div>
-        <button class="submit-btn">送信する</button>
-      </div>
+        <input type="hidden" name="_subject" value="【三昭化成サイト】お問い合わせがありました">
+        <p class="form-note" id="formNote"></p>
+        <button type="submit" class="submit-btn" id="submitBtn">送信する</button>
+      </form>
     </div>
   </div>
 </section>
@@ -1331,6 +1344,56 @@
       navLinks.classList.remove('open');
     });
   });
+
+  // Contact form → Formspree
+  const contactForm = document.getElementById('contactForm');
+  const formNote = document.getElementById('formNote');
+  const submitBtn = document.getElementById('submitBtn');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const company = document.getElementById('f-company').value.trim();
+      const name = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const tel = document.getElementById('f-tel').value.trim();
+      const message = document.getElementById('f-message').value.trim();
+
+      if (!company || !name || !email || !tel || !message) {
+        formNote.textContent = '※ 必須項目（*）をすべてご入力ください。';
+        formNote.style.color = '#e0a0a0';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中…';
+      formNote.style.color = 'rgba(255,255,255,0.45)';
+      formNote.textContent = '';
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then((response) => {
+          if (response.ok) {
+            formNote.style.color = '#9fd9a8';
+            formNote.textContent = 'お問い合わせを送信しました。ご連絡ありがとうございます。';
+            contactForm.reset();
+          } else {
+            throw new Error('送信に失敗しました');
+          }
+        })
+        .catch(() => {
+          formNote.style.color = '#e0a0a0';
+          formNote.textContent = '送信に失敗しました。お手数ですが sales@sanshokasei.com まで直接ご連絡ください。';
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '送信する';
+        });
+    });
+  }
 
   // Tab switching
   function showTab(id) {
